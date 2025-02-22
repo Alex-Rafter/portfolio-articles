@@ -38,8 +38,44 @@ Initial State & Constraints
 
 Architecture & Process Changes
 
+### Diagram 1
 
+```mermaid
 
+graph TD;
+    A((START Script)) --> B[Fetch data]
+    C[Remote Config Data]
+    B --> C
+    C --> B
+    B --> D[Translate data into correct structure]
+    D --> E[Persist local version of config data]
+    E --> F[Create new site directory for each site in config data]
+    F -->|ev-motors| G[ev-motors]
+    F -->|city-bikes| H[city-bikes]
+    F -->|premium-cars| I[premium-cars]
+
+```
+
+### Diagram 2
+
+```mermaid
+
+graph TD;
+    A[Master Template Directory] --> B[Iterate over each page in master template]
+
+    B -->|ASP.NET config Files - thisSite.Config - parsed as XML with Cheerio.js - Node dep| C[Add data from config object to in-memory data structure]
+    B -->|Template Files - aspx, asax - File contents read by script - converted into template literals - Node/JavaScript| D[Add data from config object via embedded expressions in the template literals]
+    B -->|GitHub Actions workflow Files - yml - parsed with js-yaml - Node dep| E[Add data from config object to in-memory data structure]
+
+    C --> F[Write output - XML to string with Cheerio and Node]
+    D --> G[Write output to file with Node - exclude building of any pages excluded in config object]
+    E --> H[Write output - YAML to string with js-yaml and Node]
+
+    F -->|green| I[ev-motors]
+    G -->|green| J[city-bikes]
+    H -->|orange| K[premium-cars]
+
+```
 
 
 

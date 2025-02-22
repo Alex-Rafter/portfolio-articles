@@ -40,6 +40,8 @@ Helping the business's Designers understand, and work from, a new component-firs
 
 Architecture & Process Changes
 
+### Diagram 1
+
 <div style="display: flex; justify-content: center;">
 
 ```mermaid
@@ -57,7 +59,7 @@ graph TD;
 ```
 </div>
 
-<div>
+### Diagram 2
 
 ```mermaid
 
@@ -78,7 +80,7 @@ graph TD;
 
 
 ```
-</div>
+
 
 Deep Dive – Focused breakdown of critical parts
 - Front End Development - system overview
